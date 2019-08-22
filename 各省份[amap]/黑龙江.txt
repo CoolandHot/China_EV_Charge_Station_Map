@@ -1,0 +1,4 @@
+﻿points=points.concat([
+{city:"黑龙江",LngLat:[126.542019,45.729261],name:"哈尔滨 翠湖天地",brand:"爱电牛",fast:2,slow:4},
+{city:"黑龙江",LngLat:[126.611106,45.739102],name:"哈尔滨 道里区龙飞",brand:"爱电牛",fast:13,slow:0},
+{city:"黑龙江",LngLat:[126.65114,45.668529],name:"哈尔滨职业技术学院",brand:"爱电牛",fast:18,slow:0}]);

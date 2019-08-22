@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>高德地图坐标←→地址</title>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=7c7635f213535fadb5d564d73dc81dbc&plugin=AMap.Geocoder"></script>
+<style type="text/css">
+body{background-color:#615e5e;background-size:cover;background-attachment:fixed;font-family:Ubuntu,sans-serif}
+.main{padding:1% 10%;color:#d8dfe9;text-align:left;font-size:15px;line-height:1.5em}
+.main a{margin:0% 42% 3%;color:#cdc9f1;text-align:center;font-size:1em}
+.main h1{margin:1% 20% 1%;color:#fff;text-align:center;font-weight:400;font-size:1.6em}
+.main input[type=button]{margin:.5em 0.1em;padding:.6em .8em;outline:0;border:none;background:#1a498c;color:#fff;text-transform:capitalize;font-size:1em;font-family:Ubuntu,sans-serif;cursor:pointer}
+.main select{position:relative;padding:0 10px;width:150px;height:2pc;border:1px solid #ccc;line-height:2pc}
+.main textarea{width:100%;height:30%;}
+</style>
+</head>
+<body>
+<svg id="back_home" enable-background="new 0 0 512 512" style="width:3em;height:3em;position:fixed;z-index:100;right:10px;top:20px;opacity:0.7;" onclick="javascript:window.location.href='https://st-ral.cn';" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m46.873 155.732v239.919l106.624-47.11 23.869-10.549v53.631l-2.596-1.123c-2.617-1.133-5.584-1.133-8.2 0l-13.073 5.666-139.095 60.338c-6.799 2.946-14.402-2.04-14.402-9.457v-317.007c0-4.11 2.442-7.819 6.202-9.457l147.295-63.882 13.073-5.666c2.617-1.144 5.584-1.144 8.2 0l2.596 1.123v45.864l-23.869 10.559z" fill="#f8f3f1"/><path d="m512 64.953v317.007c0 4.11-2.442 7.819-6.202 9.457l-160.368 69.548c-2.617 1.144-5.584 1.144-8.2 0l-1.906-.824v-47.78l128.433-55.496v-233.068l-128.433 61.244v-64.366l1.906.824c2.617 1.133 5.584 1.133 8.2 0l152.168-66.004c6.799-2.945 14.402 2.041 14.402 9.458z" fill="#f8f3f1"/><path d="m177.366 52.158v45.864l-23.869 10.559v-51.88l13.073-5.666c2.617-1.144 5.584-1.144 8.2 0z" fill="#efe2dd"/><path d="m153.497 348.541 23.869-10.549v53.631l-2.596-1.123c-2.617-1.133-5.584-1.133-8.2 0l-13.073 5.666z" fill="#efe2dd"/><path d="m341.33 172.609v-50.265c-1.391 0-2.792-.278-4.1-.845l-162.46-70.464c-1.308-.577-2.709-.855-4.1-.855v46.576z" fill="#e0d3ce"/><path d="m170.67 331.616v58.039c1.391 0 2.792.278 4.1.845l162.46 70.464c1.308.577 2.709.855 4.1.855v-54.633z" fill="#e0d3ce"/><path d="m337.23 121.5-11.693-5.071v339.465l11.693 5.071c1.308.577 2.709.855 4.1.855v-339.476c-1.391 0-2.792-.278-4.1-.844z" fill="#cdbfbb"/><path d="m177.363 91.457-6.693-2.903-131.512 57.036c-1.883.817-3.101 2.673-3.101 4.726v249.643c0 3.708 3.799 6.201 7.201 4.726l127.413-55.267 6.693 2.903v-260.864z" fill="#bcea73"/><path d="m468.743 107.316-127.413 55.267-6.006-2.605v260.862l6.006 2.605 131.512-57.035c1.883-.817 3.102-2.673 3.102-4.726v-249.643c0-3.707-3.8-6.2-7.201-4.725z" fill="#bcea73"/><path d="m170.67 88.554v260.863l-17.173 7.448v-260.862z" fill="#a3e440"/><path d="m475.944 112.043v60.183h-41.279c-5.687 0-10.302 4.615-10.302 10.302v7.984c0 2.73-1.082 5.347-3.018 7.283l-29.432 29.432c-1.937 1.937-4.553 3.018-7.283 3.018h-43.3v-20.542h-6.006v-49.727l6.006 2.606 127.413-55.269c3.399-1.472 7.201 1.021 7.201 4.73z" fill="#5bbd93"/><path d="m177.366 91.46v97.218h-6.696v-19.326l-17.173.206-46.76.577c-2.73 0-5.347 1.082-7.283 3.018l-23.808 23.807c-1.937 1.937-3.018 4.553-3.018 7.283v62.408c0 5.686-4.615 10.302-10.302 10.302h-26.27v-126.64c0-2.05 1.216-3.904 3.101-4.728l131.513-57.031z" fill="#2db181"/><path d="m170.67 88.554v80.798l-17.173.206v-73.555z" fill="#1ca56f"/><path d="m341.33 162.583v260.863l-170.66-74.029v-260.863z" fill="#99d53b"/><path d="m341.33 162.583v260.863l-15.793-6.851v-260.863z" fill="#8dc637"/><path d="m281.229 136.509v168.548c0 5.69-4.612 10.302-10.302 10.302h-37.849c-5.69 0-10.302-4.612-10.302-10.302v-81.167c0-2.732-1.085-5.351-3.016-7.283l-24.903-24.911c-1.932-1.933-4.553-3.019-7.286-3.019h-16.901v-100.123z" fill="#158f5e"/><path d="m341.33 162.583v47.12h-71.938c-5.687 0-10.302-4.615-10.302-10.302v-72.494z" fill="#2db181"/><path d="m341.33 162.583v47.121h-15.793v-53.972z" fill="#1ca56f"/><path d="m419.817 290.446 4.337-4.337c3.017-3.017 3.017-7.909 0-10.927-3.018-3.017-7.909-3.017-10.928 0l-4.337 4.337-4.337-4.337c-3.018-3.017-7.909-3.017-10.928 0-3.017 3.017-3.017 7.909 0 10.927l4.337 4.337-4.337 4.337c-3.017 3.017-3.017 7.909 0 10.927 1.509 1.509 3.487 2.263 5.464 2.263s3.955-.755 5.464-2.263l4.337-4.337 4.337 4.337c1.509 1.509 3.487 2.263 5.464 2.263s3.955-.755 5.464-2.263c3.017-3.017 3.017-7.909 0-10.927z" fill="#fb6672"/><g fill="#5bbd93"><path d="m129.974 263.726h-1.034c-4.267 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.034c4.267 0 7.726 3.459 7.726 7.726.001 4.267-3.459 7.726-7.726 7.726z"/><path d="m129.974 294.184h-1.034c-4.267 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.034c4.267 0 7.726 3.459 7.726 7.726s-3.459 7.726-7.726 7.726z"/><path d="m129.974 324.641h-1.034c-4.267 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.034c4.267 0 7.726 3.459 7.726 7.726.001 4.267-3.459 7.726-7.726 7.726z"/></g><path d="m296.177 189.703h-1.034c-4.268 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.034c4.268 0 7.726 3.459 7.726 7.726 0 4.266-3.458 7.726-7.726 7.726z" fill="#bcea73"/><path d="m444.523 230.877h-1.034c-4.268 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.034c4.268 0 7.726 3.459 7.726 7.726s-3.458 7.726-7.726 7.726z" fill="#158f5e"/><path d="m309.226 359.533h-1.035c-4.268 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.035c4.268 0 7.726 3.459 7.726 7.726.001 4.267-3.458 7.726-7.726 7.726z" fill="#bcea73"/><path d="m67.477 334.713h-1.035c-4.267 0-7.726-3.459-7.726-7.726s3.459-7.726 7.726-7.726h1.035c4.267 0 7.726 3.459 7.726 7.726s-3.459 7.726-7.726 7.726z" fill="#158f5e"/><path d="m497.599 55.499-1.567.68v339.471l9.765-4.236c3.766-1.633 6.202-5.346 6.202-9.451v-317.013c.001-7.415-7.597-12.402-14.4-9.451z" fill="#efe2dd"/></svg>
+<div class="main">
+<h1>高德地图坐标、地址转换</h1>
+<a href=".\BMap_Geo2Address.html">百度系坐标</a>
+<textArea rows="10" cols="10"  id="coordinates_input" placeholder="按行输入坐标"></textArea>
+</br>
+<input type="button" value="坐标→地址" onclick="coord_addr()" />
+</br>
+<p>WGS84: GPS设备获取的大地坐标;</p>
+<p>GCJ02: google、soso、aliyun、mapabc、amap所用坐标;</p>
+<p>BD09: baidu坐标;</p>
+<select id="WGS84">
+	<option value=0>WGS84→GCJ02</option>
+	<option value=1>BD09→GCJ02</option>
+	<option value=2 selected>Lng,Lat对调</option>
+</select>
+<input type="button" value="坐标系转换" onclick="coord_convert()" />
+</br></br>
+<textArea rows="10" cols="10" id="address_input" placeholder="按行输入地址"></textArea>
+</br>
+<input type="button" value="地址→坐标" onclick="addr_coord()" />
+<input type="button" value="复制结果" style="float:right;" onclick="copy_result()"/>
+<input type="button" value="清空结果" style="float:right;" onclick="javascript:document.getElementById('result').innerHTML='';"/>
+<div id="copy_success" style="display:none;float:right;padding-top:1em;" >复制成功</div>
+<div id="result"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+var index = 0;
+var MapGeo = new AMap.Geocoder({city:"zhanjiang"});
+var coordinates = [];
+var addrs = [];
+var inner_html=document.getElementById("coordinates_input");
+var result_html=document.getElementById("result");
+
+function copy_result(){
+	var hidden_text = document.createElement('textarea');
+	hidden_text.value = result_html.innerHTML.replace(/<br>/gi,'\n');
+	hidden_text.id = 'copy_to_clipboard';
+	document.body.appendChild(hidden_text);
+	var el = document.getElementById('copy_to_clipboard');
+	el.select();
+	document.execCommand('copy');
+	document.getElementById('copy_success').style.display ='';
+	setTimeout(()=>{document.getElementById('copy_success').style.display = 'none';},1000);
+	document.body.removeChild(el)
+}
+//API限制，每次只能转换40个坐标系，分割inner_html内数据
+function separate_array(){
+	var coord_input=inner_html.value.split("\n");
+	for(var i in coord_input){
+		var xx=coord_input[i].split(',');
+		if(xx[0]){
+			var j=new AMap.LngLat(xx[0],xx[1]);
+			coordinates.push(j);
+		}
+	}
+	var array_of_40=[];
+	for(i=0;i<coordinates.length;i+=40)
+		array_of_40.push(coordinates.slice(i,i+40));
+	return array_of_40;
+}
+//调用AMap.convertFrom
+function convert_constructor(mode,array_of_40,i){
+	return new Promise((resolve)=>{
+		AMap.convertFrom(array_of_40[i], mode, (status, result)=>{
+			if (result.info === 'ok'){
+            var resLnglat = result.locations;
+			for (var i in resLnglat)
+				result_html.innerHTML+=resLnglat[i].toString()+'</br>';
+				resolve();
+				}
+			});
+		})
+}
+//代替for循环，顺序转换输入数据
+function convert_loop(mode,array_of_40,i){
+	convert_constructor(mode,array_of_40,i)
+		.then(()=>{
+			if(++i<array_of_40.length)
+				convert_loop(mode,array_of_40,i);
+		})
+}
+//下拉框
+function coord_convert(){
+	coordinates.splice(0,coordinates.length);	
+	switch(WGS84.value*1){
+		case 0:
+			convert_loop('gps',separate_array(),0);		
+			break;
+		case 1:
+			convert_loop('baidu',separate_array(),0);	
+			break;
+		case 2:
+			var coord_input=inner_html.value.split("\n");
+			for(var i in coord_input){
+				var xx=coord_input[i].split(',');
+				var j=[xx[1]*1,xx[0]*1];
+				coordinates.push(j);
+			}
+			for(var j in coordinates)
+				result_html.innerHTML+=coordinates[j].toString()+'</br>';
+			break;
+		default: break;
+	}
+}
+//坐标→地址
+function coord_addr(){
+	coordinates.splice(0,coordinates.length);
+	var coord_input=document.getElementById("coordinates_input").value.split("\n");
+	for(var i=0;i<coord_input.length;i++)
+		coordinates.push(coord_input[i]);
+	amGEO(index=0);	
+}
+//坐标→地址，顺序获取address
+function amGEO(kk) {
+	if(kk>=coordinates.length) return;	
+	geocodeSearch(coordinates[kk])
+		.then(amGEO);
+}
+//地址→坐标
+function addr_coord(){
+	addrs.splice(0,addrs.length);
+	var addr_input=document.getElementById("address_input").value.split("\n");
+	for(var i=0;i<addr_input.length;i++)
+		addrs.push(addr_input[i]);	
+	amAddr(index=0);	
+}
+//地址→坐标，顺序获取coordinate
+function amAddr(kk) {
+	if(kk>=addrs.length) return;
+	geocoordSearch(addrs[kk])
+		.then(amAddr);
+}
+//坐标→地址 BMap.Geocoder.getLocation
+function geocodeSearch(pt) {
+	return new Promise((resolve,reject)=>{
+		MapGeo.getAddress(pt, function (status, result) {
+			if(status === 'complete'&&result.regeocode){
+			result_html.innerHTML += coordinates[index] + "：" + result.regeocode.formattedAddress + "</br>";
+			resolve(++index);//传递参数给.then()
+			}
+		});
+	})
+	
+}
+//地址→坐标 BMap.Geocoder.getLocation
+function geocoordSearch(pt) {
+	return new Promise((resolve,reject) => {
+		MapGeo.getLocation(pt, function (status, result) {
+			if (status === 'complete'&&result.geocodes.length) 
+				result_html.innerHTML += addrs[index] + ": " + result.geocodes[0].location + "</br>";			
+			resolve(++index);//传递参数给.then()
+		});	
+	})	
+}
+</script>
