@@ -5,7 +5,7 @@ var Map_table = 'geolocat';
 var connection = sql.createConnection({
 		host: 'localhost',
 		user: 'root',
-		password: 'huanghuan',
+		password: '',
 		port: '3306',
 	});
 connection.connect();
