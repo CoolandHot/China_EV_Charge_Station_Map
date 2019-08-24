@@ -158,10 +158,10 @@ AMap.plugin(['AMap.Autocomplete'], function () {
 });
 
 $("#map_tool").click(() => {
-	window.location.href = "/AMap_Geo2Address.html";
+	window.location.href = "./AMap_Geo2Address.html";
 });
 $("#feedback").click(() => {
-	window.location.href = "/feedback.html";
+	window.location.href = "./feedback.html";
 });
 $("#chargestation").click(() => {
 	if ($(".station_ADN").css("display") == 'block') {
