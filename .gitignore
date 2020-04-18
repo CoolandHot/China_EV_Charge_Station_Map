@@ -1,6 +1,6 @@
-Shadowsocks_LibQSS_Server\
-nginx-1.17.3\
-node_modules\
-各省份\[amap\]\
-各省份\[baidu\]\
+Shadowsocks_LibQSS_Server/
+nginx-1.17.3/
+node_modules/
+各省份\[amap\]/
+各省份\[baidu\]/
 node_service/*.txt
