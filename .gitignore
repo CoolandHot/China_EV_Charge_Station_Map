@@ -1,8 +1,6 @@
-cache version
-ico
-nginx-1.14.0
-node_modules
-各省份\[amap\]
-各省份\[baidu\]
-各省份数据转化.html
+Shadowsocks_LibQSS_Server\
+nginx-1.17.3\
+node_modules\
+各省份\[amap\]\
+各省份\[baidu\]\
 node_service/*.txt

@@ -1,0 +1,90 @@
+<html>
+<head></head>
+<body><div id="map"></div>
+<script src="./各省份[baidu]/广西.txt""></script>
+<script type="text/javascript">
+
+console.time();
+function CheckSingle()
+{
+var resultArr=[];
+for ( i=0;i<points.length;i++){
+  for( j=0; j<resultArr.length;j++){
+    if(resultArr[j]==points[i].img){break;}
+  }
+  if(j==resultArr.length){
+  resultArr[j]=points[i].img;
+  }
+}
+document.getElementById("map").innerHTML=resultArr.join("</br>");
+}
+
+function LngLatConvert()
+{
+	var Point={
+		createNew:function(){
+			var point={};
+			point.LngLat=[114,24];
+			point.name="someChargeStation";
+			point.brand="someBrand";
+			point.fast=1;
+			point.slow=2;
+			return point;		
+		}
+	}
+	var resultArr=[];
+	var x_pi = 3.14159265358979324 * 3000.0 / 180.0;  
+	var gg_lat, gg_lon;
+	for (i=0; i<points.length; i++)
+	{
+		if(points[i].fastChargingPileCount==0 && points[i].slowChargingPileCount==0){ continue;}
+		var out_put=Point.createNew();
+		x = points[i].longitude - 0.0065, y = points[i].latitude - 0.006;  
+		z = Math.sqrt(x * x + y * y) - 0.00002 * Math.sin(y * x_pi);  
+		theta = Math.atan2(y, x) - 0.000003 * Math.cos(x * x_pi);  
+		gg_lon = z * Math.cos(theta);  
+		gg_lat = z * Math.sin(theta); 
+		out_put.LngLat="["+gg_lon+","+gg_lat+"]";
+		out_put.name=points[i].name;
+		var temp=points[i].img.replace("/styles/pcmap/img/c/","");
+		temp=temp.replace(".png","");
+		switch(temp)
+		{
+			case temp.match(/(^ccz)?/)[1]:	temp="充电队长";
+			break;
+			case temp.match(/(^ywny)?/)[1]: temp="依威能源";
+			break;
+			case temp.match(/(^xxcd)?/)[1]: temp="星星充电";
+			break;
+			case temp.match(/(^ptxny)?/)[1]: temp="普天";
+			break;
+			case temp.match(/(^trd)?/)[1]: temp="特来电";
+			break;
+			case temp.match(/(^tsl)?/)[1]: temp="特斯拉";
+			break;
+			case temp.match(/(^nfdw)?/)[1]: temp="粤易充";
+			break;
+			case temp.match(/(^gjdw)?/)[1]: temp="国家电网";
+			break;
+			default: break;			
+		}
+		out_put.brand=temp;
+		out_put.fast=points[i].fastChargingPileCount;
+		out_put.slow=points[i].slowChargingPileCount;
+		
+		resultArr.push(out_put);
+}  
+var outResult=document.getElementById("map");
+outResult.innerHTML="";
+	for(i=0;i<resultArr.length;i++){
+		outResult.innerHTML+='{city:"广西",LngLat:'+resultArr[i].LngLat+','+'name:"'+resultArr[i].name+'",'+'brand:"'+resultArr[i].brand+'",'+'fast:'+resultArr[i].fast+','+'slow:'+resultArr[i].slow+'},</br>';
+		}
+		
+	}
+LngLatConvert();
+
+console.timeEnd();
+
+
+</script>
+</body>
